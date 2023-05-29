@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Listado de Personajes de Harry Potter</title>
+</head>
+<body>
+<div class="text-center">
+</div>
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="characters" href="/">List</a>
+      </li>
+      <li class="nav-item">
+      <%= link_to "New character", new_character_path, class:"nav-link" %>
+      </li>
+      <li class="nav-item">
+      <%= link_to "Edit to characters", characters_path, class:"nav-link"%>
+    </li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+<%= form_with(model: character) do |form| %>
+  <% if character.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+      <ul>
+        <% character.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :house, style: "display: block" %>
+    <%= form.text_field :house %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
